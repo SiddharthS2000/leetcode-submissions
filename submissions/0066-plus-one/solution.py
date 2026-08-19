@@ -1,20 +1,14 @@
-class Solution(object):
-    def plusOne(self, digits):
-        """
-        :type digits: List[int]
-        :rtype: List[int]
-        """
+class Solution:
+    def plusOne(self, digits: List[int]) -> List[int]:
         carry = 1
-        for ind in range(len(digits)-1, -1 , -1):
-            if carry:
-                digits[ind] += 1
-                carry = digits[ind] / 10
-                digits[ind] = digits[ind] % 10
-
-        if carry:
-            digits.insert(0,1)
-        return digits
-
-
-
-
+        i = len(digits) - 1
+        while i >= 0:
+            digits[i] += carry
+            carry = digits[i] // 10
+            digits[i] = digits[i] % 10
+            if carry == 0:
+                return digits
+            i -= 1
+        else:
+            return [1] + digits
+        
