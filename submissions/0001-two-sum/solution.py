@@ -1,8 +1,11 @@
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        indices = list()
+        visited = {}
         for idx, num in enumerate(nums):
             diff = target - num
-            if diff in nums and idx != nums.index(diff):
-                return [idx, nums.index(diff)]
-        
+            if diff in visited and idx != visited[diff]:
+                return idx, visited[diff]
+
+            visited[num] = idx
+
+        return []
