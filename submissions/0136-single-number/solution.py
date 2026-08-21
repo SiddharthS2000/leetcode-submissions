@@ -1,12 +1,10 @@
-from collections import Counter
-class Solution(object):
-    def singleNumber(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: int
-        """
-        counter = Counter(nums)
-
-        for k, v in counter.items():
-            if v == 1:
-                return k
+class Solution:
+    def singleNumber(self, nums: List[int]) -> int:
+        freq_map = {}
+        for num in nums:
+            freq_map[num] = 1 + freq_map.get(num, 0)
+        
+        for num in freq_map:
+            if freq_map[num] != 2:
+                return num
+        
